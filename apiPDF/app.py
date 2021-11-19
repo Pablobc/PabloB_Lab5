@@ -14,7 +14,7 @@ mydb = mysql.connector.connect(
 
 print(mydb)
 
-@app.route("/grida", methods=["GET","POST"])
+@app.route("/api/grida", methods=["GET","POST"])
 
 def get_data():
     mycursor = mydb.cursor()
