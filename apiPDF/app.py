@@ -10,7 +10,7 @@ CORS(app, resources={r'/*': {'origins': '*'}})
 mydb = mysql.connector.connect(
   host="localhost",
   user="pdfhacker",
-  password="ITKBWiCFedvha3nv9wzx",
+  password="ITKBWiCF",
   database="pdfdatos"
 )
 
