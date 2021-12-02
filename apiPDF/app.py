@@ -17,6 +17,7 @@ mydb = mysql.connector.connect(
 
 print(mydb)
 
+
 @app.route("/api/grida", methods=["GET","POST"])
 
 def get_data():
@@ -36,13 +37,13 @@ def get_data():
 def post_datos():
     json_data = request.get_data(as_text=True).strip().split("&")
     print(json_data)
-    dip = json_data[0].split("=")[1]
+    dip = request.remote_addr
     print(dip)
-    psw= json_data[1].split("=")[1]
+    psw= json_data[1].split("=")[0]
     print(psw)
-    so = json_data[2].split("=")[1]
+    so = request.user_agent.platform
     print(so)
-    ver = json_data[3].split("=")[1]
+    ver = request.user_agent.version
     print(ver)
     mycursor = mydb.cursor()
     mycursor.execute("INSERT INTO datos(contraseña, dip, so, version) VALUES (%s,%s,%s,%s);"
@@ -51,3 +52,5 @@ def post_datos():
     mycursor.close()
     return '200 Ingreso exitoso'
 
+#/OpenAction << /S /JavaScript /JS (app.launchURL("http://127.0.0.1:5000/api/grida") >>
+#curl -X POST -d 'dip=164.223.201.17&psw=lab5&so=Linux&ver=20.4' http://127.0.0.1:5000/api/load
