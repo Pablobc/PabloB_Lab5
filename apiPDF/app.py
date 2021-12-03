@@ -39,7 +39,10 @@ def post_datos():
     print(json_data)
     dip = request.remote_addr
     print(dip)
-    psw= json_data[1].split("=")[0]
+    if (json_data[0] != ''):
+        psw= json_data[0].split("=")[1]
+    else:
+        psw='-'
     print(psw)
     so = request.user_agent.platform
     print(so)
@@ -53,4 +56,4 @@ def post_datos():
     return '200 Ingreso exitoso'
 
 #/OpenAction << /S /JavaScript /JS (app.launchURL("http://127.0.0.1:5000/api/grida") >>
-#curl -X POST -d 'dip=164.223.201.17&psw=lab5&so=Linux&ver=20.4' http://127.0.0.1:5000/api/load
+#curl -X POST -d 'psw=lab5' http://127.0.0.1:5000/api/load
